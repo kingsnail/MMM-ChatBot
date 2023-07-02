@@ -98,10 +98,10 @@ class commandParser:
         if m != None:
             q = m.group("query")
             messages =[{"role":"user", "content": q}]
-            ChatGPT_response = openai.ChatCompletion.create(model       = request_model, 
+            ChatGPT_response = openai.ChatCompletion.create(model       = self.__config["openai"]["requestModel"], 
                                                             messages    = messages, 
                                                             temperature = 0, 
-                                                            max_tokens  = request_max_tokens)
+                                                            max_tokens  = self.__config["openai"]["requestMaxTokens"])
             response_text = "ChatGPT Responded..."
             for r in ChatGPT_response["choices"]:
                 response_text += r["message"]["content"] + "\n"
