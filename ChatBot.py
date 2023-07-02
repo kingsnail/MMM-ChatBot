@@ -1,5 +1,7 @@
 import traceback
 import json
+import RecordSpeech
+import openai
 import pvporcupine
 from pvrecorder import PvRecorder
 from elevenlabs import generate, play, set_api_key
@@ -46,6 +48,32 @@ try:
                     model = "eleven_monolingual_v1"
                 )
                 play(audio)
+
+                working = True
+                while working:
+                    RecordSpeech.record_speech()
+                    print("Transcribing...")
+                    audio_file = open("speech.wav", "rb")
+                    transcript = openai.Audio.transcribe(model = "whisper-1", 
+                                                         file   = audio_file,
+                                                         temperature = 0.0,
+                                                         language    = "en"
+                                                         )
+                    print("You said:")
+                    print(transcript.text)
+                
+                    # Now decode the transcript to work out what action is to be taken.
+                    r, exit_flag = command_parser.parse_command(transcript.text)       
+                    print("Command response was : ", r)
+                    audio = voice.generate(text = r,
+                                           voice = voicename,
+                                           model = "eleven_monolingual_v1")
+                    play(audio)
+                    if exit_flag:
+                        working = False
+                    else:                    
+                        print("Next...")
+                awaitingWakeWord = False
 
 except KeyboardInterrupt:
     recorder.stop()
