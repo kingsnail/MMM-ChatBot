@@ -1,3 +1,4 @@
+import traceback
 import json
 import pvporcupine
 from pvrecorder import PvRecorder
@@ -41,6 +42,7 @@ except KeyboardInterrupt:
 except Exception as e: 
     print("Something went wrong: ")
     print(e)
+    traceback.print_exc()
 finally:
     porcupine.delete()
     recorder.delete()
