@@ -22,7 +22,7 @@ class commandParser:
             data = json.load(file_object)  
             return data
         
-    internal_state = self.load_object("internals.json")
+    internal_state = load_object(self, "internals.json")
 
     text = "Add potatoes, rice, salad cheese, strawberry yoghurt and bananas to my shopping list."
 
@@ -117,6 +117,6 @@ class commandParser:
         #
         # Command has been processed so save the updated internal state
         #
-        self.save_object(internal_state, "internals.json")
+        save_object(internal_state, "internals.json")
     
         return response_text, response_exit
