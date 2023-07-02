@@ -15,7 +15,7 @@ config    = readConfig()
 
 openai.api_key      = config["openai"]["APIKey"]
 openai.organization = config["openai"]["organization"]
-openaiRequestModel  = config["openai"]["reqModel"]
+openaiRequestModel  = config["openai"]["requestModel"]
 openaiMaxTokens     = config["openai"]["reqMaxTokens"]
 
 set_api_key(config["elevenlabs"]["APIKey"])
