@@ -12,6 +12,7 @@ class commandParser:
         self.__myMail  = MailUtils.Mail(self.__config)
         openai.api_key = self.__config["openai"]["APIKey"]
         openai.organization = self.__config["openai"]["organization"]
+        self.__internal_state = self.load_object("internals.json")
         
     def save_object( self, obj, filename):
         with open(filename, 'w') as file_object:  #open the file in write mode
@@ -21,9 +22,7 @@ class commandParser:
         with open(filename, 'r') as file_object:  
             data = json.load(file_object)  
             return data
-        
-    internal_state = commandParser.load_object("internals.json")
-
+            
     text = "Add potatoes, rice, salad cheese, strawberry yoghurt and bananas to my shopping list."
 
     def parse_command(self, t):
