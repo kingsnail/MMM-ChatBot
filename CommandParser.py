@@ -9,7 +9,7 @@ import MailUtils
 class commandParser:
     def __init__(self, config):
         self.__config = config
-        self.myMail = MailUtils.Mail(config)
+        self.__myMail = MailUtils.Mail(self.__config)
        
     def save_object( obj, filename):
         with open(filename, 'w') as file_object:  #open the file in write mode
@@ -89,7 +89,7 @@ class commandParser:
              else:
                   email_to = "pearcemark21@gmail.com"
                   print("default email")              
-             MailUtils.send_email("markpearce47@gmail.com", email_to, "Shopping List", my_shopping_list, self.__config["gmail"]["password"])
+             self.__myMail.send_email(email_to, "Shopping List", my_shopping_list)
              response_text = "Your shopping list has been sent."
 
 
