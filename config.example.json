@@ -4,7 +4,11 @@
                    "APIKey"       : "*Enter Your API Key here *"
   },
   "elevenlabs" : { "APIKey"       : "*Enter Your API Key here *",
-                   "VoiceName"    : "Alice"
-                  
+                   "VoiceName"    : "Alice"                  
+  },
+  "openai" :     { "APIKey" : "",
+                   "organization" : "",
+                   "requestModel" : "",
+                   "reqMaxTokens" : 500
   }
 }
