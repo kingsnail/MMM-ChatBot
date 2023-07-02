@@ -2,7 +2,7 @@ import openai
 import re
 import json
 
-import mail_utils
+import MailUtils
 
 ## Setup for OpenAI
 
@@ -87,7 +87,7 @@ def parse_command(t):
          else:
               email_to = "pearcemark21@gmail.com"
               print("default email")              
-         mail_utils.send_email("markpearce47@gmail.com", email_to, "Shopping List", my_shopping_list)
+         mail_utils.send_email("markpearce47@gmail.com", email_to, "Shopping List", my_shopping_list, "xxxx")
          response_text = "Your shopping list has been sent."
 
 
