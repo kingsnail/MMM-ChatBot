@@ -9,6 +9,7 @@ import MailUtils
 class commandParser:
     def __init__(self, config):
         self.__config = config
+        self.myMail = MailUtils.Mail(config)
        
     def save_object( obj, filename):
         with open(filename, 'w') as file_object:  #open the file in write mode
