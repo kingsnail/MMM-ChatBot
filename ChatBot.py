@@ -8,7 +8,7 @@ def readConfig():
 
 config    = readConfig()
 porcupine = pvporcupine.create(
-    access_key   = config["picovoice"]["accesskey"],
+    access_key   = config["picovoice"]["APIKey"],
     keyword_paths= config["picovoice"]["KeywordPaths"]
 )
 
