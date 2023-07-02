@@ -2,7 +2,7 @@ import traceback
 import json
 import pvporcupine
 from pvrecorder import PvRecorder
-from elevenlabslib import *
+from elevenlabs import generate, play, set_api_key
 
 def readConfig():
     with open('config.json', 'r') as f:
@@ -11,10 +11,15 @@ def readConfig():
 
 config    = readConfig()
 
+set_api_key(config["elevenlabs"]["APIKey"])
 voicename = config["elevenlabs"]["VoiceName"]
-print("VoiceName = ", voicename)
-user_11labs = ElevenLabsUser(config["elevenlabs"]["APIKey"])
-voice       = user_11labs.get_voices_by_name(voicename)[0]  # This is a list because multiple voices can have the same name
+audio = generate(
+  text = "Hi! My name is Bella, nice to meet you!",
+  voice = voicename,
+  model = "eleven_monolingual_v1"
+)
+
+play(audio)
 
 porcupine = pvporcupine.create(
     access_key   = config["picovoice"]["APIKey"],
