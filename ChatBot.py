@@ -1,6 +1,7 @@
 import json
 import pvporcupine
 from pvrecorder import PvRecorder
+from elevenlabs import *
 
 def readConfig():
     with open('config.json', 'r') as f:
