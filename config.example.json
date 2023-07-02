@@ -10,9 +10,13 @@
                    "organization" : "",
                    "requestModel" : "",
                    "reqMaxTokens" : 500
+  },
+  "gmail" :      { "password"  : "",
+                   "emailFrom" : "",
+                   "emailTo"   : "",
+                   "emailAddresses" : {"name1" : "emailaddress@bin.com",
+                                       "name2" : "emailaddress@bin.com"
+                                      }
   }
-  "gmail" :      { "password" : "",
-                   "from"     : "",
-                   "to"       : ""
   }
 }
