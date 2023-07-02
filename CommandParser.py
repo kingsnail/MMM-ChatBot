@@ -116,6 +116,6 @@ class commandParser:
         #
         # Command has been processed so save the updated internal state
         #
-        save_object(internal_state, "internals.json")
+        save_object(self.__internal_state, "internals.json")
     
         return response_text, response_exit
