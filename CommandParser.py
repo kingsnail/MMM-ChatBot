@@ -13,11 +13,11 @@ class commandParser:
         openai.api_key = self.__config["openai"]["APIKey"]
         openai.organization = self.__config["openai"]["organization"]
         
-    def save_object( obj, filename):
+    def save_object( self, obj, filename):
         with open(filename, 'w') as file_object:  #open the file in write mode
             json.dump(obj, file_object)   # json.dump() function to stores the set of numbers in numbers.json file
 
-    def load_object( filename):
+    def load_object( self, filename):
         with open(filename, 'r') as file_object:  
             data = json.load(file_object)  
             return data
@@ -26,7 +26,7 @@ class commandParser:
 
     text = "Add potatoes, rice, salad cheese, strawberry yoghurt and bananas to my shopping list."
 
-    def parse_command(t):
+    def parse_command(self, t):
         response_exit = False
         response_text = "I didn't understand that."
     
