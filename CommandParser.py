@@ -100,7 +100,7 @@ class commandParser:
             ChatGPT_response = openai.ChatCompletion.create(model       = self.__config["openai"]["requestModel"], 
                                                             messages    = messages, 
                                                             temperature = 0, 
-                                                            max_tokens  = self.__config["openai"]["requestMaxTokens"])
+                                                            max_tokens  = self.__config["openai"]["reqMaxTokens"])
             response_text = "ChatGPT Responded..."
             for r in ChatGPT_response["choices"]:
                 response_text += r["message"]["content"] + "\n"
