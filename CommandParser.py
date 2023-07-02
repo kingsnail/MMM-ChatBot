@@ -89,7 +89,7 @@ class commandParser:
                   email_to = self.__config["gmail"]["email_addresses"][email_to_match.group("mail_name")]
                   print("emailing to ", email_to)
              else:
-                  email_to = "pearcemark21@gmail.com"
+                  email_to = self.__config["gmail"]["email_to"]
                   print("default email")              
              self.__myMail.send_email(email_to, "Shopping List", my_shopping_list)
              response_text = "Your shopping list has been sent."
