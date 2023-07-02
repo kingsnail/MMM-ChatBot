@@ -9,7 +9,7 @@ def readConfig():
 config    = readConfig()
 porcupine = pvporcupine.create(
     access_key   = config["picovoice"]["accesskey"],
-    keyword_paths= config["picovoice"]["keyword_paths"]
+    keyword_paths= config["picovoice"]["KeywordPaths"]
 )
 
 recorder = PvRecorder(device_index=-1,
@@ -20,4 +20,5 @@ try:
     while True:
         keyword_index = porcupine.process(recorder.read())
         if keyword_index >= 0:
-            print("Detected"
+            print("Detected" + config["picovoice"]["KeywordNames"][keyword_index]
+            recorder.stop()
