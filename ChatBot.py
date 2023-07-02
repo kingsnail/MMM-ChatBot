@@ -14,7 +14,7 @@ def readConfig():
 
 config    = readConfig()
 
-myParser = CommandParser.commandParser()
+myParser = CommandParser.commandParser(config)
 
 openai.api_key      = config["openai"]["APIKey"]
 openai.organization = config["openai"]["organization"]
@@ -71,7 +71,7 @@ try:
                     print(transcript.text)
                 
                     # Now decode the transcript to work out what action is to be taken.
-                    r, exit_flag = CommandParser.parse_command(transcript.text)       
+                    r, exit_flag = myParser.parse_command(transcript.text)       
                     print("Command response was : ", r)
                     audio = generate(text = r,
                                      voice = voicename,
