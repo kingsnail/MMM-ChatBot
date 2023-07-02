@@ -4,7 +4,7 @@ from pvrecorder import PvRecorder
 
 def readConfig():
     with open('config.json', 'r') as f:
-    config = json.load(f)
+        config = json.load(f)
 
 config    = readConfig()
 porcupine = pvporcupine.create(
