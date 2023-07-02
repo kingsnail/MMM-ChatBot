@@ -1,6 +1,10 @@
 {
-  "picovoice" { "KeywordPaths" : [ "Chatbot_en_raspberry-pi_v2_2_0.ppn" ],
-                "KeywordNames" : [ "ChatBot" ]
-                "APIKey"       : "*Enter Your API Key here *"
-              }
+  "picovoice"  : { "KeywordPaths" : [ "Chatbot_en_raspberry-pi_v2_2_0.ppn" ],
+                   "KeywordNames" : [ "ChatBot" ],
+                   "APIKey"       : "*Enter Your API Key here *"
+  },
+  "elevenlabs" : { "APIKey"       : "*Enter Your API Key here *",
+                   "VoiceName"    : "Alice"
+                  
+  }
 }
