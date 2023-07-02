@@ -23,5 +23,11 @@ try:
         if keyword_index >= 0:
             print("Detected " + config["picovoice"]["KeywordNames"][keyword_index])
             recorder.stop()
-except:
-    pass
+except KeyboardInterrupt:
+    recorder.stop()
+except Exception as e: 
+    print("Something went wrong: ")
+    print(e)
+finally:
+    porcupine.delete()
+    recorder.delete()
