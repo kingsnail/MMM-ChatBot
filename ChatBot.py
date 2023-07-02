@@ -1,28 +1,40 @@
+# Built In Modules
 import traceback
 import json
-import RecordSpeech
-import CommandParser
+
+# 3rd Party Modules
 import openai
 import pvporcupine
 from pvrecorder import PvRecorder
 from elevenlabs import generate, play, set_api_key
 
+# App specific modules
+import RecordSpeech
+import CommandParser
+
+# read the configuration file and convert from JSON to Python data structure.
 def readConfig():
     with open('config.json', 'r') as f:
         c = json.load(f)
     return c
 
+# Load the user specific configuration.
 config    = readConfig()
 
+# Initialize the command parser
 myParser = CommandParser.commandParser(config)
 
+# Initialize Open AI objects
 openai.api_key      = config["openai"]["APIKey"]
 openai.organization = config["openai"]["organization"]
 openaiRequestModel  = config["openai"]["requestModel"]
 openaiMaxTokens     = config["openai"]["reqMaxTokens"]
 
+# Initialize the ElevenLabs speech generation module
 set_api_key(config["elevenlabs"]["APIKey"])
 voicename = config["elevenlabs"]["VoiceName"]
+
+# Say hello
 audio = generate(
   text = "Hi! My name is Bella, nice to meet you!",
   voice = voicename,
@@ -31,16 +43,26 @@ audio = generate(
 
 play(audio)
 
+#
+# Initialize the PicoVoice wakeword recognition.
+#
 porcupine = pvporcupine.create(
     access_key   = config["picovoice"]["APIKey"],
     keyword_paths= config["picovoice"]["KeywordPaths"]
 )
 
+#
+# Create an audio recorder to capture voice data.
+#
 recorder = PvRecorder(device_index=-1,
                       frame_length=porcupine.frame_length
                      )
+##
+## Main Loop 
+##
 try:
     while True:
+        print("Sleeping...")
         recorder.start()
         awaitingWakeWord = True
         while awaitingWakeWord:
