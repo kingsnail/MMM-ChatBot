@@ -71,9 +71,9 @@ try:
                     # Now decode the transcript to work out what action is to be taken.
                     r, exit_flag = CommandParser.parse_command(transcript.text)       
                     print("Command response was : ", r)
-                    audio = voice.generate(text = r,
-                                           voice = voicename,
-                                           model = "eleven_monolingual_v1")
+                    audio = generate(text = r,
+                                     voice = voicename,
+                                     model = "eleven_monolingual_v1")
                     play(audio)
                     if exit_flag:
                         working = False
