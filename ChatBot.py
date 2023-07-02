@@ -3,7 +3,7 @@ import pvporcupine
 from pvrecorder import PvRecorder
 
 def readConfig():
-    with open('config.example.json', 'r') as f:
+    with open('config.json', 'r') as f:
     config = json.load(f)
 
 config    = readConfig()
