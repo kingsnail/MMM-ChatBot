@@ -48,18 +48,18 @@ class commandParser:
                     items.append(i.strip().title())
             print("items=", str(items))
             for i in items:
-               if i not in internal_state["shopping_list"]:
-                   internal_state["shopping_list"].append(i)
+               if i not in self.__internal_state["shopping_list"]:
+                   self.__internal_state["shopping_list"].append(i)
             response_text = "The items have been added."    
 
         ### Query shopping list ###
         m = re.match(query_shopping_list, t.lower())
         if m != None:
-            items = internal_state["shopping_list"]
+            items = self.__internal_state["shopping_list"]
             print("items=", str(items))
-            if len(internal_state["shopping_list"]) > 0:
+            if len(self.__internal_state["shopping_list"]) > 0:
                 response_text = "Your shopping list contains "
-                for i in internal_state["shopping_list"]:
+                for i in self.__internal_state["shopping_list"]:
                     response_text += i + ", "
             else:
                 response_text = "Your shopping list is empty."
@@ -67,7 +67,7 @@ class commandParser:
         ### Delete shopping list ###
         m = re.match(empty_shopping_list, t.lower())
         if m != None:
-            internal_state["shopping_list"] = []
+            self.__internal_state["shopping_list"] = []
             response_text = "The shopping list has been deleted."
         
         print("internal_state=", str(internal_state))    
@@ -77,7 +77,7 @@ class commandParser:
         if m != None:
              my_shopping_list = ""
              n = 1
-             for i in internal_state["shopping_list"]:
+             for i in self.__internal_state["shopping_list"]:
                  my_shopping_list += str(n) + ". " + i + "\n"
                  n += 1
              
