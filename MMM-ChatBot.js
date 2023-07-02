@@ -4,7 +4,7 @@
  * By Mark Pearce
  *
  */
-Module.register("MMM-CHatBot", {
+Module.register("MMM-ChatBot", {
 
     // Module config defaults.
     defaults: {
@@ -16,23 +16,10 @@ Module.register("MMM-CHatBot", {
         initialLoadDelay: 4250,
         retryDelay: 2500,
         updateInterval: 5 * 1 * 1000, // Update every 5 seconds
-	showPresetDetails: true,
-	presets: [
-		    {scene: "Scene A",
-		     lights: [{id: "65547", state: "on", brt: "100", color: "100"},
-			      {id: "65546", state: "on", brt: "100", color: "100"}
-			     ]
-		    },
-		    {scene: "Scene B",
-		     lights: [{id: "65547", state: "off", brt: "0", color: "100"},
-			      {id: "65546", state: "off", brt: "0", color: "100"}
-			     ]
-		    }
-		]
     },
 
     getStyles: function() {
-        return ["KS-SH.css"];
+        return ["MMM-ChatBot.css"];
     },
 
     start: function() {
@@ -211,9 +198,9 @@ Module.register("MMM-CHatBot", {
         this.getDevices(this.config.initialLoadDelay);
     },
 	
-    getDevices: function(){
+    getStatus: function(){
         console.log("KS-SH: getDevices called...");
-        this.sendSocketNotification('GET_DEVICES', this.url);
+        this.sendSocketNotification('GET_STATUS', this.url);
     },
 
     processSetResponse: function(payload){
@@ -222,7 +209,7 @@ Module.register("MMM-CHatBot", {
 
 	// this gets data from node_helper
     socketNotificationReceived: function(notification, payload) { 
-        if (notification === "DEVICES_RESULT") {
+        if (notification === "STATUS_RESULT") {
             this.processDevices(payload);
             this.updateDom(this.config.animationSpeed);
         }
