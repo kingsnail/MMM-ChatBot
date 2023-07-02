@@ -8,6 +8,10 @@ def readConfig():
     return c
 
 config    = readConfig()
+
+user_11labs = ElevenLabsUser(config["elevenlabs"]["APIKey"])
+voice       = user_11labs.get_voices_by_name(config["elevenlabs"]["VoiceName"])[0]  # This is a list because multiple voices can have the same name
+
 porcupine = pvporcupine.create(
     access_key   = config["picovoice"]["APIKey"],
     keyword_paths= config["picovoice"]["KeywordPaths"]
@@ -17,12 +21,18 @@ recorder = PvRecorder(device_index=-1,
                       frame_length=porcupine.frame_length
                      )
 try:
-    recorder.start()
-    while True:
-        keyword_index = porcupine.process(recorder.read())
-        if keyword_index >= 0:
-            print("Detected " + config["picovoice"]["KeywordNames"][keyword_index])
-            recorder.stop()
+    while True
+        recorder.start()
+        awaitingWakeWord = True
+        while awaitingWakeWord:
+            keyword_index = porcupine.process(recorder.read())
+            if keyword_index >= 0:
+                r = "Hello there, I just detected my wake word, " + config["picovoice"]["KeywordNames"][keyword_index]
+                recorder.stop()
+                awaitingWakeWord = False
+                print(r)
+                voice.generate_and_play_audio(r, playInBackground=False)
+
 except KeyboardInterrupt:
     recorder.stop()
 except Exception as e: 
