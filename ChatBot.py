@@ -13,6 +13,11 @@ def readConfig():
 
 config    = readConfig()
 
+openai.api_key      = config["openai"]["APIKey"]
+openai.organization = config["openai"]["organization"]
+openaiRequestModel  = config["openai"]["reqModel"]
+openaiMaxTokens     = config["openai"]["reqMaxTokens"]
+
 set_api_key(config["elevenlabs"]["APIKey"])
 voicename = config["elevenlabs"]["VoiceName"]
 audio = generate(
@@ -63,7 +68,7 @@ try:
                     print(transcript.text)
                 
                     # Now decode the transcript to work out what action is to be taken.
-                    r, exit_flag = command_parser.parse_command(transcript.text)       
+                    r, exit_flag = CommandParser.parse_command(transcript.text)       
                     print("Command response was : ", r)
                     audio = voice.generate(text = r,
                                            voice = voicename,
