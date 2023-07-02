@@ -1,5 +1,5 @@
 {
-  "picovoice" { "Path" :  "Chatbot_en_raspberry-pi_v2_2_0.ppn",
-                "PathName" : "ChatBot"
+  "picovoice" { "KeywordPaths" : [ "Chatbot_en_raspberry-pi_v2_2_0.ppn" ],
+                "KeywordNames" : [ "ChatBot" ]
               }
 }
