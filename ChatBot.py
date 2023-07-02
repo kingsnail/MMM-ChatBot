@@ -40,7 +40,12 @@ try:
                 recorder.stop()
                 awaitingWakeWord = False
                 print(r)
-                voice.generate_and_play_audio(r, playInBackground=False)
+                audio = generate(
+                    text = r,
+                    voice = voicename,
+                    model = "eleven_monolingual_v1"
+                )
+                play(audio)
 
 except KeyboardInterrupt:
     recorder.stop()
