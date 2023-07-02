@@ -22,7 +22,7 @@ recorder = PvRecorder(device_index=-1,
                       frame_length=porcupine.frame_length
                      )
 try:
-    while True
+    while True:
         recorder.start()
         awaitingWakeWord = True
         while awaitingWakeWord:
