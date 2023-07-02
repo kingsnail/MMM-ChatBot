@@ -14,6 +14,8 @@ def readConfig():
 
 config    = readConfig()
 
+myParser = CommandParser.commandParser()
+
 openai.api_key      = config["openai"]["APIKey"]
 openai.organization = config["openai"]["organization"]
 openaiRequestModel  = config["openai"]["requestModel"]
