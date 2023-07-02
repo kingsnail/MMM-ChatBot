@@ -1,6 +1,7 @@
 import traceback
 import json
 import RecordSpeech
+import CommandParser
 import openai
 import pvporcupine
 from pvrecorder import PvRecorder
