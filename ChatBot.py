@@ -8,8 +8,6 @@ def readConfig():
     return c
 
 config    = readConfig()
-print("config=", str(config))
-print("config['picovoice']=", str(config["picovoice"]))
 porcupine = pvporcupine.create(
     access_key   = config["picovoice"]["APIKey"],
     keyword_paths= config["picovoice"]["KeywordPaths"]
@@ -23,7 +21,7 @@ try:
     while True:
         keyword_index = porcupine.process(recorder.read())
         if keyword_index >= 0:
-            print("Detected" + config["picovoice"]["KeywordNames"][keyword_index])
+            print("Detected " + config["picovoice"]["KeywordNames"][keyword_index])
             recorder.stop()
 except:
     pass
