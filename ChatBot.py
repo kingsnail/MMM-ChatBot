@@ -4,7 +4,8 @@ from pvrecorder import PvRecorder
 
 def readConfig():
     with open('config.json', 'r') as f:
-        config = json.load(f)
+        c = json.load(f)
+    return c
 
 config    = readConfig()
 print("config=", str(config))
