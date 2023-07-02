@@ -70,8 +70,6 @@ class commandParser:
             self.__internal_state["shopping_list"] = []
             response_text = "The shopping list has been deleted."
         
-        print("internal_state=", str(internal_state))    
-
         ### Send shopping list ###
         m = re.match(send_shopping_list, t.lower())
         if m != None:
@@ -117,5 +115,6 @@ class commandParser:
         # Command has been processed so save the updated internal state
         #
         save_object(self.__internal_state, "internals.json")
-    
+        print("internal_state=", str(self.__internal_state))    
+
         return response_text, response_exit
