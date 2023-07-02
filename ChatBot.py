@@ -10,8 +10,10 @@ def readConfig():
 
 config    = readConfig()
 
+voicename = config["elevenlabs"]["VoiceName"]
+print("VoiceName = ", voicename)
 user_11labs = ElevenLabsUser(config["elevenlabs"]["APIKey"])
-voice       = user_11labs.get_voices_by_name(config["elevenlabs"]["VoiceName"])[0]  # This is a list because multiple voices can have the same name
+voice       = user_11labs.get_voices_by_name(voicename)[0]  # This is a list because multiple voices can have the same name
 
 porcupine = pvporcupine.create(
     access_key   = config["picovoice"]["APIKey"],
