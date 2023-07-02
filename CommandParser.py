@@ -22,7 +22,7 @@ class commandParser:
             data = json.load(file_object)  
             return data
         
-    internal_state = commandparser.load_object("internals.json")
+    internal_state = commandParser.load_object("internals.json")
 
     text = "Add potatoes, rice, salad cheese, strawberry yoghurt and bananas to my shopping list."
 
