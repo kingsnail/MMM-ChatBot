@@ -8,9 +8,11 @@ import MailUtils
 
 class commandParser:
     def __init__(self, config):
-        self.__config = config
-        self.__myMail = MailUtils.Mail(self.__config)
-       
+        self.__config  = config
+        self.__myMail  = MailUtils.Mail(self.__config)
+        openai.api_key = self.__config["openai"]["APIKey"]
+        openai.organization = self.__config["openai"]["organization"]
+        
     def save_object( obj, filename):
         with open(filename, 'w') as file_object:  #open the file in write mode
             json.dump(obj, file_object)   # json.dump() function to stores the set of numbers in numbers.json file
