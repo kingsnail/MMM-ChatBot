@@ -50,7 +50,7 @@ def record_speech():
             # Detect a silent frame
             if get_max(data) < THRESHOLD:
                 s_count += 1
-                print("n_count=", str(n_count), ", s_count=", str(s_count))
+                # print("n_count=", str(n_count), ", s_count=", str(s_count))
                 # Look for enough silent frames occuring AFTER a noisy period to stop recording
                 if (s_count > SILENT_CHUNKS) and (n_count > NOISY_CHUNKS):
                     recording = False
