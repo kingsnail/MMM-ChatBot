@@ -18,23 +18,33 @@ def readConfig():
         c = json.load(f)
     return c
 
+#
 # Load the user specific configuration.
+#
 config    = readConfig()
 
+#
 # Initialize the command parser
+#
 myParser = CommandParser.commandParser(config)
 
+#
 # Initialize Open AI objects
+#
 openai.api_key      = config["openai"]["APIKey"]
 openai.organization = config["openai"]["organization"]
 openaiRequestModel  = config["openai"]["requestModel"]
 openaiMaxTokens     = config["openai"]["reqMaxTokens"]
 
+#
 # Initialize the ElevenLabs speech generation module
+#
 set_api_key(config["elevenlabs"]["APIKey"])
 voicename = config["elevenlabs"]["VoiceName"]
 
+#
 # Say hello
+#
 audio = generate(
   text = "Hi! My name is Bella, nice to meet you!",
   voice = voicename,
