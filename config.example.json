@@ -11,4 +11,7 @@
                    "requestModel" : "",
                    "reqMaxTokens" : 500
   }
+  "gmail" :      { "password" : "",
+                   "from"     : ""
+  }
 }
