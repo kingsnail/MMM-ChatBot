@@ -8,11 +8,11 @@ import pvporcupine
 from pvrecorder import PvRecorder
 from elevenlabs import generate, play, set_api_key
 
-# App specific modules
+# Application specific modules
 import RecordSpeech
 import CommandParser
 
-# read the configuration file and convert from JSON to Python data structure.
+# read the configuration file and convert from JSON to Python data structure and return the result.
 def readConfig():
     with open('config.json', 'r') as f:
         c = json.load(f)
@@ -89,6 +89,9 @@ try:
                 )
                 play(audio)
 
+                #
+                # The main command recognition and processing loop.
+                #
                 working = True
                 while working:
                     RecordSpeech.record_speech()
@@ -101,8 +104,9 @@ try:
                                                          )
                     print("You said:")
                     print(transcript.text)
-                
-                    # Now decode the transcript to work out what action is to be taken.
+                    #
+                    # Now decode the transcript and take the appropriate action.
+                    #
                     r, exit_flag = myParser.parse_command(transcript.text)       
                     print("Command response was : ", r)
                     audio = generate(text = r,
@@ -113,14 +117,12 @@ try:
                         working = False
                     else:                    
                         print("Next...")
-                awaitingWakeWord = False
-
-except KeyboardInterrupt:
-    recorder.stop()
+                    
 except Exception as e: 
     print("Something went wrong: ")
     print(e)
     traceback.print_exc()
 finally:
+    recorder.stop()
     porcupine.delete()
     recorder.delete()
