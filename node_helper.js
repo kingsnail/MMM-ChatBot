@@ -22,6 +22,11 @@ module.exports = NodeHelper.create({
         self.sendSocketNotification('STATUS_RESULT', stat);
     },
 
+    updatedResult: function(stat){
+        self.sendSocketNotification('LAST_RESULT_RESPONSE', stat);
+    },
+
+
     getStatus: function(callback) {    
 	     var devstr = "Test";
         /* Call the external python module to get the system status  */
@@ -30,10 +35,23 @@ module.exports = NodeHelper.create({
 							  callback(result);							 
 						        });
     },
+
+    getLastResult: function(callback) {    
+	     var devstr = "Test";
+        /* Call the external python module to get the system status  */
+       const pythonStatusProcess = spawn('python',["ChatBbotLastResult.py"]);
+	     pythonProcess.stdout.on('data', function (data) { var result = JSON.parse(data.toString());
+							  callback(result);							 
+						        });
+    },
+ 
  
     socketNotificationReceived: function(notification, payload) {
 	      if (notification === 'GET_STATUS') {
 	         this.getStatus(this.updatedStatus);
+	      }
+	      if (notification === 'LAST_RESULT_REQUEST'){
+	         this.getLastResult(this.updatedResult);
 	      }
     }
 });
