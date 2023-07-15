@@ -31,7 +31,7 @@ module.exports = NodeHelper.create({
 	     var devstr = "Test";
         /* Call the external python module to get the system status  */
        const pythonStatusProcess = spawn('python',["ChatBbotStatus.py"]);
-	     pythonProcess.stdout.on('data', function (data) { var result = JSON.parse(data.toString());
+	     pythonStatusProcess.stdout.on('data', function (data) { var result = JSON.parse(data.toString());
 							  callback(result);							 
 						        });
     },
@@ -40,7 +40,7 @@ module.exports = NodeHelper.create({
 	     var devstr = "Test";
         /* Call the external python module to get the system status  */
        const pythonStatusProcess = spawn('python',["ChatBbotLastResult.py"]);
-	     pythonProcess.stdout.on('data', function (data) { var result = JSON.parse(data.toString());
+	     pythonStatusProcess.stdout.on('data', function (data) { var result = JSON.parse(data.toString());
 							  callback(result);							 
 						        });
     },
